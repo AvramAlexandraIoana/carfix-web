@@ -1,5 +1,7 @@
 import React, { useContext, useEffect } from "react";
-
+import {
+	ArrowLeftOutlined
+} from '@ant-design/icons'
 import { Affix } from "antd";
 import {
   HashRouter as Router,
@@ -18,6 +20,8 @@ import {
   TabsWrapper,
   TabButton,
   TasksPageContent,
+  TitleWrapper,
+  IconWrapper
 } from "./tasks.style";
 import { FancyHeader } from "../../components";
 
@@ -51,9 +55,14 @@ export default function TasksPage() {
 
   return (
     <TasksPageWrapper id="TasksPageWrapper" className="TasksPageWrapper">
-      <FancyHeader title="Solicitari" subtitle={`Solicitarile `} />
       <Affix>
         <TabsWrapper className="buttons-top">
+        <IconWrapper>
+          <ArrowLeftOutlined onClick={() => history.goBack()}/> 
+        </IconWrapper>
+        <TitleWrapper>
+          Solicitari
+				</TitleWrapper>
           <TabButton
             type={location.pathname === "/tasks/new" ? "primary" : "default"}
             onClick={() => {

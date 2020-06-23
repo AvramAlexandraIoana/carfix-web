@@ -1,18 +1,21 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Button, Input } from 'antd';
 import { useHistory } from 'react-router-dom';
-
- 
+import daunanouaiconpng from '../../assets/gif/daunanoua-icon.png';
+import {
+	ArrowLeftOutlined
+} from '@ant-design/icons'
 import { FancyHeader, CarListItem } from '../../components';
 import { AppContext } from '../../context/app.context';
 
-import { ButtonAddCarWrapper, GaragePageWrapper, SearchContent } from './garage.styled';
+import { ButtonAddCarWrapper, GaragePageWrapper, SearchContent, CarContent, IconWrapper, TitleWrapper, NumberWrapper, CarsNumber } from './garage.styled';
 export default function GaragePage() {
 	const history = useHistory();
 	const { user, getClientCars, cars } = useContext(AppContext);
 	const [carsLocal, setCarsLocal] = useState([])
 	const [ notFound, setNotFound] = useState(1);
 	const [userSearchInput, setUserSearchInput] = useState("");
+	const [carsNumber, setCarsNumber] = useState(0);
 
 	useEffect(() => {
 		getClientCars(user.user.id);
@@ -22,6 +25,7 @@ export default function GaragePage() {
 	useEffect(() => {
 	  console.log(cars);
 	  if(cars){
+		setCarsNumber(cars.length);
 		setCarsLocal(cars);
 	  }
 	}, [cars]);
@@ -54,12 +58,18 @@ export default function GaragePage() {
 
 	return (
 		<GaragePageWrapper className="GaragePageWrapper">
-			<FancyHeader title={`Garajul tau`} subtitle={`Acesta este garajul tau`} />
 
 			<ButtonAddCarWrapper className="ButtonAddCarWrapper">
-				<Button onClick={() => history.push('/add-car')} type="primary" shape="round">
-					Adauga o masină
-				</Button>
+				<IconWrapper>
+					<ArrowLeftOutlined onClick={() => history.goBack()}/> 
+				</IconWrapper>
+				<TitleWrapper>
+					Garajul tau
+				</TitleWrapper>
+				<img onClick={() => history.push('/add-car')} src={daunanouaiconpng}/>
+				<NumberWrapper>
+					Ai <CarsNumber> {carsNumber}  </CarsNumber>masini adaugate
+				</NumberWrapper>
 			</ButtonAddCarWrapper>
 			<SearchContent>
 				<Input.Search placeholder="Caută..." value={userSearchInput} onChange={(e) =>
@@ -67,14 +77,17 @@ export default function GaragePage() {
 					} enterButton />
       		</SearchContent>
 			<br/>
-			{carsLocal && carsLocal.map(car => <CarListItem  onClick={() => {
-    				 history.push({ pathname: "/view-car", search: `?id=${car.id}` });
-      				}} key={car.id} car={car} />)}
-			<div>
-				{(notFound === 0) && (
-					<div>Nu s-a găsit nimic</div>
-				)}
-			</div>
+			<CarContent>
+				{carsLocal && carsLocal.map(car => <CarListItem  onClick={() => {
+						history.push({ pathname: "/view-car", search: `?id=${car.id}` });
+						}} key={car.id} car={car} />)}
+				<div>
+					{(notFound === 0) && (
+						<div>Nu s-a găsit nimic</div>
+					)}
+				</div>
+			</CarContent>
+			
 		</GaragePageWrapper>
 	);
 }

@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 import { Button } from "antd";
 
@@ -12,14 +13,20 @@ export const TabsWrapper = styled.div`
   display: flex;
   padding: 16px 0px;
   background: #fff;
+  border: 1px solid #d3cfcf;
+  margin-bottom: 50px;
+  border-radius: 0px 0px 0px 50px;
+  height: 100px;
+}
 `;
 export const TasksPageWrapper = styled.div`
   height: calc(100vh - 64px);
   overflow: scroll;
   .buttons-top{
-    padding-left: 15px;
     padding-right: 15px;
     button{
+      position: relative;
+      top: 20px;
       min-width: auto;
       padding: 10px 20px;
       line-height: 20px;
@@ -129,3 +136,23 @@ export const InputContent = styled.input`
   width: 80%;
   border: 1px solid gray;
 `;
+
+
+export const TitleWrapper = styled.div`
+  position: relative;
+  color: black;
+  display: inline;
+  left: 30px;
+  font-weight: bold;
+  font-size: 18px;
+  top: -5px;
+`;
+
+
+export const IconWrapper = styled.div`
+  position: relative;
+  left: 10px;
+  top: -2px;
+  color: black;
+`;
+

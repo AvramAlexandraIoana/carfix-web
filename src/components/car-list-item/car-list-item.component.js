@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { AppContext } from '../../context/app.context';
+import righticonpng from "../../assets/gif/right-arrow-icon.png";
 
 import {
 	ContainerWrapper,
@@ -8,6 +9,9 @@ import {
 	BrandInfo,
 	CarInfo,
 	CarNumberWrapper,
+	CarMake,
+	Information
+
 } from './car-list-item.style';
 
 import { useLocation } from 'react-router-dom';
@@ -25,16 +29,21 @@ export default function CarListItem({ car, onClick }) {
 						? 'active'
 						: 'inactive'
 				}`}>
-				<BrandInfo>
-					<span className="CarMake">{car.make}</span>
-					<span className="CarModel">{car.model}</span>
-				</BrandInfo>
 				<CarInfo>
 					<CarNumberWrapper className="CarNumberWrapper">
 						{car.registration_number}
 					</CarNumberWrapper>
-					<span className="CarVin">{car.vin}</span>
 				</CarInfo>
+				<CarMake>{car.make}</CarMake>
+				<Information>{car.model}</Information>
+				<Information>{car.vin}</Information>
+				<Information>
+         			 IR | #  {car.id}
+        		</Information>
+				<Information>
+					Vezi detalii
+					<img src={righticonpng} />
+				</Information>
 			</CarListItemWrapper>
 		</ContainerWrapper>
 	);

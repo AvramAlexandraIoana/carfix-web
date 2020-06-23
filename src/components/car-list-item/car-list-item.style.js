@@ -36,6 +36,21 @@ export const CarInfo = styled.div`
 	margin-top: 8px;
 `;
 
+export const CarMake = styled.div`
+	font-weight: 700;
+	padding-left: 8px;
+	padding-top: 7px;
+`;
+
+export const Information = styled.div`
+	padding-left: 8px;
+	padding-top: 7px;
+	img {
+		position: relative;
+		left: 10px;
+	}
+`;
+
 export const CarNumberWrapper = styled.div`
 	background: #fff;
 	border-radius: 2px;
@@ -45,7 +60,7 @@ export const CarNumberWrapper = styled.div`
 	display: flex;
 	&::before {
 		content: 'RO';
-		background: #1890ff;
+		background: #10E4E4;
 		display: flex;
 		font-size: 7px;
 		width: 12px;
